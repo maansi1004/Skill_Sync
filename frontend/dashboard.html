@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSync - Student Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- Real Application Sidebar -->
+  <nav class="sidebar app-sidebar">
+    <div class="logo">
+      <h1>SkillSync</h1>
+    </div>
+    <ul class="nav-links">
+      <li class="active"><a href="/dashboard.html">My Dashboard</a></li>
+      <li><a href="/events.html">Find Events (Match)</a></li>
+      <li><a href="/search.html">Search Users</a></li>
+      <li><a href="/browse-teams.html">Browse Teams</a></li>
+      <li><a href="/teams.html">Teams & Invites</a></li>
+      <li><a href="/analytics.html">Analytics</a></li>
+      <li class="logout"><a href="#" id="logout-btn">Log Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    
+    <!-- 🏢 Profile & Tech Stack Box (Integrated Top) -->
+    <section class="card profile-box full-width" style="margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-start; padding: 2.5rem; background: linear-gradient(135deg, var(--panel-bg), rgba(59, 130, 246, 0.05)); border: 1px solid var(--panel-border);">
+      <div class="profile-main-info" style="flex: 1;">
+        <div style="display:flex; align-items:center; gap:1.2rem; margin-bottom:1rem;">
+          <div class="avatar-circle" id="user-avatar-initial" style="width:64px; height:64px; font-size:1.8rem;">S</div>
+          <div>
+            <h2 style="font-size: 2.2rem; font-weight: 700; margin:0;">Welcome, <span id="user-firstname" style="color:var(--accent);">Student</span>!</h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-top:0.2rem;">
+              <span id="user-dept" style="color:var(--text-main); font-weight:600;"></span> Dept &nbsp;•&nbsp; Year <span id="user-year" style="color:var(--text-main); font-weight:600;"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Stack Integrated -->
+      <div class="tech-stack-preview" style="flex: 1.2; padding-left: 2rem; border-left: 1px solid var(--panel-border);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+           <h4 style="color:var(--text-muted); font-size:0.8rem; text-transform:uppercase; letter-spacing:1px;">🎨 Your Tech Stack & Progress</h4>
+           <button class="btn secondary-btn small-btn" style="width:auto; padding:0.3rem 0.8rem; font-size:0.75rem;" id="open-skills-modal">Update Stack</button>
+        </div>
+        <div id="prof-skills-visual" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem;">
+           <div class="loading-state">Loading stack...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skill Selection Modal -->
+    <div id="skills-modal" class="modal" style="display:none;">
+      <div class="modal-content" style="max-width: 500px; padding: 2rem;">
+        <span class="close-btn" id="close-skills-modal">&times;</span>
+        <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Update Your Skill Stack</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">Select the skills you possess. This will update your recommendations.</p>
+        
+        <div id="skills-selection-list" style="max-height: 300px; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; padding: 0.5rem; margin-bottom: 1.5rem;">
+          <!-- Dynamic Skill Checkboxes -->
+          <div class="loading-state">Fetching skill list...</div>
+        </div>
+
+        <div style="display: flex; gap: 1rem;">
+          <button id="save-skills-btn" class="btn primary-btn">Save Changes</button>
+          <button id="cancel-skills-btn" class="btn secondary-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Middle Row: Quick Actions & Activity -->
+    <div class="content-grid" style="margin-bottom: 2.5rem;">
+      <!-- Quick Actions -->
+      <div class="card glass-hover">
+        <h3 style="margin-bottom: 1.5rem; font-size:1.3rem; display:flex; align-items:center; gap:0.6rem;">⚡ Quick Actions</h3>
+        <div class="action-cards-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:1.2rem;">
+          <div class="action-card quick-action-btn" onclick="window.location.href='/events.html'" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 1.2rem; background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border); border-radius: 12px; transition: all 0.3s ease;">
+            <div class="action-info">
+              <span class="action-title" style="display:block; font-size:1.1rem; font-weight:800; line-height:1.2; margin-bottom: 0.3rem;">Explore<br>Hackathons</span>
+              <span class="action-desc" style="display:block; font-size:0.75rem; color:var(--text-muted);">Events for you</span>
+            </div>
+          </div>
+          <div class="action-card quick-action-btn" onclick="window.location.href='/search.html'" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 1.2rem; background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border); border-radius: 12px; transition: all 0.3s ease;">
+            <div class="action-info">
+              <span class="action-title" style="display:block; font-size:1.1rem; font-weight:800; line-height:1.2; margin-bottom: 0.3rem;">Find<br>Teammates</span>
+              <span class="action-desc" style="display:block; font-size:0.75rem; color:var(--text-muted);">Recruit talent</span>
+            </div>
+          </div>
+          <div class="action-card quick-action-btn" onclick="window.location.href='/browse-teams.html'" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 1.2rem; background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border); border-radius: 12px; transition: all 0.3s ease;">
+            <div class="action-info">
+              <span class="action-title" style="display:block; font-size:1.1rem; font-weight:800; line-height:1.2; margin-bottom: 0.3rem;">Join<br>Teams</span>
+              <span class="action-desc" style="display:block; font-size:0.75rem; color:var(--text-muted);">Fill gaps</span>
+            </div>
+          </div>
+          <div class="action-card quick-action-btn" onclick="window.location.href='/analytics.html'" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding: 1.2rem; background: rgba(255,255,255,0.03); border: 1px solid var(--panel-border); border-radius: 12px; transition: all 0.3s ease;">
+            <div class="action-info">
+              <span class="action-title" style="display:block; font-size:1.1rem; font-weight:800; line-height:1.2; margin-bottom: 0.3rem;">View<br>Trends</span>
+              <span class="action-desc" style="display:block; font-size:0.75rem; color:var(--text-muted);">Insights</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Your Activity -->
+      <div class="card glass-hover">
+        <h3 style="margin-bottom: 1.5rem; font-size:1.3rem; display:flex; align-items:center; gap:0.6rem;">📈 Activity & Strength</h3>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--text-muted);">Teams Joined</span>
+            <span style="font-size:1.5rem; font-weight:700;" id="activity-teams">0</span>
+          </div>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="color:var(--text-muted);">Platform Connections</span>
+            <span style="font-size:1.5rem; font-weight:700;" id="activity-invites">0</span>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem;">
+              <span style="color:var(--text-muted);">Profile Strength</span>
+              <span style="color:var(--success); font-weight:bold;" id="activity-strength-text">0%</span>
+            </div>
+            <div class="progress-bar-container">
+              <div id="activity-strength-bar" class="progress-bar-fill success-fill" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🥇 Recommended For You (Moved to BOTTOM) -->
+    <section class="card recommended-section full-width visually-separated">
+      <div class="section-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+        <h3 style="font-size:1.6rem;">✨ Smart Recommendations</h3>
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+           <span class="pill" style="background:var(--accent-glow); color:var(--text-main); border:1px solid var(--accent); padding: 0.4rem 1rem;">Personalized for your stack</span>
+        </div>
+      </div>
+      
+      <div class="recommendations-grid">
+        <div class="rec-group">
+          <h4 style="color:var(--text-muted); font-size:0.85rem; text-transform:uppercase; margin-bottom:1.2rem; border-left: 3px solid var(--accent); padding-left: 0.8rem;">👥 High-Match Teams</h4>
+          <div id="recommended-teams-list" class="rec-list">
+            <div class="loading-state">Analyzing matching teams...</div>
+          </div>
+        </div>
+
+        <div class="rec-group">
+          <h4 style="color:var(--text-muted); font-size:0.85rem; text-transform:uppercase; margin-bottom:1.2rem; border-left: 3px solid var(--warning); padding-left: 0.8rem;">👤 Recommended Teammates</h4>
+          <div id="recommended-teammates-list" class="rec-list">
+            <div class="loading-state">Finding complementary talent...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <style>
+    /* Premium Dashboard Overrides */
+    .profile-box {
+      border: 1px solid var(--panel-border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    
+    .visually-separated {
+      margin-top: 4rem;
+      border-top: 2px solid var(--accent);
+      background: rgba(15, 23, 42, 0.4);
+    }
+
+    .progress-bar-container { height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; transition: width 1s ease; }
+    .success-fill { background: var(--success); box-shadow: 0 0 15px var(--success); }
+
+    .glass-hover:hover {
+      background: rgba(255,255,255,0.02);
+      border-color: var(--accent);
+    }
+
+    .recommendations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .rec-item { 
+      background: rgba(255,255,255,0.02); 
+      padding: 1.25rem; 
+      border-radius: 12px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      border: 1px solid var(--panel-border); 
+      transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .rec-item:hover { 
+      transform: translateY(-3px) scale(1.02); 
+      border-color: var(--accent); 
+      background: rgba(59,130,246,0.08); 
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .skill-progress-bg { height: 6px; background: rgba(255,255,255,0.03); border-radius: 3px; overflow: hidden; margin-top: 0.4rem; }
+    .skill-progress-fill { height: 100%; background: var(--accent); transition: width 1s ease-out; }
+  </style>
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

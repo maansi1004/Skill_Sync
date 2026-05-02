@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSync - Team Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <nav class="sidebar app-sidebar">
+    <div class="logo">
+      <h1>SkillSync</h1>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/dashboard.html">My Dashboard</a></li>
+      <li><a href="/events.html">Find Events (Match)</a></li>
+      <li><a href="/search.html">Search Users</a></li>
+      <li><a href="/browse-teams.html">Browse Teams</a></li>
+      <li class="active"><a href="/teams.html">Teams & Invites</a></li>
+
+      <li><a href="/analytics.html">Analytics</a></li>
+      <li class="logout"><a href="#" id="logout-btn">Log Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <header>
+      <h2>Team Management</h2>
+    </header>
+
+    <div class="content-grid" style="align-items: start;">
+       <!-- Left Side: My Teams & Invites -->
+       <div class="col" style="grid-column: 1 / -1;">
+           <h3>Invites Received</h3>
+           <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem;">Teams inviting you or students requesting to join your team</p>
+           <div id="invites-received-container" class="card-list">
+               <div class="card" style="padding:1rem;">Loading invites...</div>
+           </div>
+
+           <h3 style="margin-top:2rem;">Requests Sent</h3>
+           <p style="color:var(--text-muted); font-size:0.8rem; margin-bottom:1rem;">Your pending requests to other teams</p>
+           <div id="requests-sent-container" class="card-list">
+               <div class="card" style="padding:1rem;">Loading requests...</div>
+           </div>
+
+           <h3 style="margin-top:2rem;">Teams I Contribute To</h3>
+           <div id="my-teams-container" class="card-list"></div>
+       </div>
+    </div>
+  </main>
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

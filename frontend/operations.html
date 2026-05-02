@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillSync - Operations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <nav class="sidebar">
+      <div class="logo">
+        <h1>SkillSync</h1>
+        <p>Admin Portal</p>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">Dashboard Home</a></li>
+        <li class="active"><a href="/operations.html">Operations & Joins</a></li>
+        <li><a href="/analytics.html">Aggregations & Reports</a></li>
+        <li><a href="/advanced.html">Subqueries & Filters</a></li>
+        <li><a href="/smart.html">Smart Analytics</a></li>
+      </ul>
+    </nav>
+    <main class="main-content">
+      <header>
+        <h2>Operations & Joins</h2>
+        <p>View relational data mapped across multiple core tables.</p>
+      </header>
+      <section id="content-area" class="content-grid">
+        <div class="loading-state"><div class="spinner"></div>Executing Joins...</div>
+      </section>
+    </main>
+    <script type="module">
+      import { loadQueries } from './src/main.js';
+      loadQueries('joins');
+    </script>
+  </body>
+</html>

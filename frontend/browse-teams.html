@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSync - Browse Teams</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <nav class="sidebar app-sidebar">
+    <div class="logo">
+      <h1>SkillSync</h1>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/dashboard.html">My Dashboard</a></li>
+      <li><a href="/events.html">Find Events (Match)</a></li>
+      <li><a href="/search.html">Search Users</a></li>
+      <li class="active"><a href="/browse-teams.html">Browse Teams</a></li>
+      <li><a href="/teams.html">Teams & Invites</a></li>
+      <li><a href="/analytics.html">Analytics</a></li>
+      <li class="logout"><a href="#" id="logout-btn">Log Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <header style="display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <h2>Active Teams</h2>
+        <p style="color:var(--text-muted); margin-top:0.5rem;">Browse teams and see their skill gaps.</p>
+      </div>
+    </header>
+
+    <div class="filters-bar" style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <input type="text" id="search-teams-input" placeholder="Search teams..." class="search-input" style="flex: 2; min-width: 200px; border: 1px solid var(--panel-border)" />
+        
+        <select id="filter-event" class="search-input" style="flex: 1; min-width: 150px; background: var(--panel-bg); color: white; border: 1px solid var(--panel-border);">
+            <option value="">All Events</option>
+            <!-- Options populated dynamically -->
+        </select>
+
+        <select id="filter-status" class="search-input" style="flex: 1; min-width: 150px; background: var(--panel-bg); color: white; border: 1px solid var(--panel-border);">
+            <option value="Recruiting">Status: Recruiting</option>
+            <option value="Full">Status: Full</option>
+            <option value="All">All Statuses</option>
+        </select>
+
+        <button class="btn primary-btn" id="filter-my-match" style="width:auto; white-space: nowrap;">Best Match for Me</button>
+    </div>
+
+    <!-- Teams List -->
+    <div id="browse-teams-grid" class="content-grid events-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); align-items: stretch;">
+        <div id="browse-loading" class="loading-state" style="grid-column: 1/-1;">Loading active teams...</div>
+    </div>
+  </main>
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

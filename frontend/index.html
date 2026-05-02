@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSync - Login & Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="auth-bg">
+  <div class="auth-container">
+    <div class="logo-large">
+      <h1>SkillSync</h1>
+      <p>Connect, Form Teams, Win Hackathons.</p>
+    </div>
+
+    <!-- Login Form -->
+    <div class="auth-card" id="login-card">
+      <h2>Welcome Back</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="login-email" required placeholder="aman@mail.com" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="login-password" required placeholder="123" />
+        </div>
+        <button type="submit" class="btn primary-btn">Sign In</button>
+      </form>
+      <p class="auth-switch">Don't have an account? <span onclick="document.getElementById('login-card').style.display='none'; document.getElementById('register-card').style.display='block'">Register here</span></p>
+    </div>
+
+    <!-- Register Form -->
+    <div class="auth-card" id="register-card" style="display: none;">
+      <h2>Create Account</h2>
+      <form id="register-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="reg-name" required />
+          </div>
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="reg-username" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="reg-email" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Department (e.g. CSE)</label>
+            <input type="text" id="reg-dept" required />
+          </div>
+          <div class="form-group">
+            <label>Year of Study</label>
+            <input type="number" min="1" max="5" id="reg-year" required />
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:-0.5rem; margin-bottom:1rem;">
+          <label style="display:block; margin-bottom:0.5rem">My Top Skills <span style="color:var(--text-muted);font-weight:300">(Select all that apply)</span></label>
+          <div id="skills-container" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+              <small style="color:var(--text-muted);">Loading skills from database...</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="reg-password" required />
+        </div>
+        <button type="submit" class="btn primary-btn">Create Account</button>
+      </form>
+      <p class="auth-switch">Already have an account? <span onclick="document.getElementById('register-card').style.display='none'; document.getElementById('login-card').style.display='block'">Sign in</span></p>
+    </div>
+  </div>
+  <script type="module" src="/src/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillSync - Analytics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <nav class="sidebar app-sidebar">
+    <div class="logo">
+      <h1>SkillSync</h1>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/dashboard.html">My Dashboard</a></li>
+      <li><a href="/events.html">Find Events (Match)</a></li>
+      <li><a href="/search.html">Search Users</a></li>
+      <li><a href="/browse-teams.html">Browse Teams</a></li>
+      <li><a href="/teams.html">Teams & Invites</a></li>
+
+      <li class="active"><a href="/analytics.html">Analytics</a></li>
+      <li class="logout"><a href="#" id="logout-btn">Log Out</a></li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <header>
+      <h2>Platform Insights & Analytics</h2>
+      <p style="color:var(--text-muted);">Real-time performance metrics across teams and skills</p>
+    </header>
+
+    <!-- NEW ANALYTICS STRUCTURE -->
+    <div class="analytics-container">
+      
+      <!-- 1. Skill Demand Analytics -->
+      <section class="card analytics-card">
+        <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+          🥇 Skill Demand Analytics
+        </h3>
+        <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">Which skills are most in demand across events/teams</p>
+        <div id="skill-demand-container" class="skill-bars">
+           <!-- Dynamic Horizontal Bars -->
+           <div class="loading-state">Analyzing skill requirements...</div>
+        </div>
+      </section>
+
+      <div class="content-grid" style="align-items: start; gap: 2rem;">
+        
+        <!-- 2. Team Formation Trend -->
+        <div class="card analytics-card">
+          <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            🥈 Team Formation Trend
+          </h3>
+          <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Platform activity and team growth over time</p>
+          <div style="height: 300px; width: 100%;">
+            <canvas id="teamTrendChart"></canvas>
+          </div>
+        </div>
+
+        <!-- 3. Top Collaborators -->
+        <div class="card analytics-card">
+          <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            🥉 Top Collaborators
+          </h3>
+          <p style="color:var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;">The most active participants in the platform ecosystem</p>
+          <ul id="collaborators-list" class="user-list collaborator-list">
+             <!-- Dynamic Leaderboard -->
+             <li class="loading-state">Checking participation records...</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <style>
+    .analytics-card {
+      transition: transform 0.3s ease;
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
+    }
+    .analytics-card:hover { border-color: var(--accent); }
+    
+    .skill-bars { display: flex; flex-direction: column; gap: 1rem; }
+    .skill-row { margin-bottom: 0.5rem; }
+    .skill-label { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .bar-bg { background: rgba(255,255,255,0.05); height: 12px; border-radius: 6px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 6px; transition: width 1s ease-out; }
+    
+    .collaborator-list li {
+      padding: 1rem;
+      margin-bottom: 0.8rem;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .rank-badge {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    .rank-1 { background: var(--warning); color: #000; }
+    .rank-2 { background: #E5E7EB; color: #000; }
+    .rank-3 { background: #CD7F32; color: #000; }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+◇ injected env (5) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+Database connected successfully
+CREATE TABLE `teams` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `team_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_id` int DEFAULT NULL,
+  `leader_id` int NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Recruiting',
+  PRIMARY KEY (`id`),
+  KEY `teams_event_id_fkey` (`event_id`),
+  KEY `teams_leader_id_fkey` (`leader_id`),
+  CONSTRAINT `teams_event_id_fkey` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `teams_leader_id_fkey` FOREIGN KEY (`leader_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+CREATE TABLE `team_requests` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `team_id` int NOT NULL,
+  `student_id` int NOT NULL,
+  `type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'PENDING',
+  `createdAt` datetime(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `team_requests_team_id_student_id_type_key` (`team_id`,`student_id`,`type`),
+  KEY `team_requests_student_id_fkey` (`student_id`),
+  CONSTRAINT `team_requests_student_id_fkey` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `team_requests_team_id_fkey` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+CREATE TABLE `team_members` (
+  `team_id` int NOT NULL,
+  `student_id` int NOT NULL,
+  PRIMARY KEY (`team_id`,`student_id`),
+  KEY `team_members_student_id_fkey` (`student_id`),
+  CONSTRAINT `team_members_student_id_fkey` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `team_members_team_id_fkey` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+CREATE TABLE `events` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `event_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_date` datetime(3) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
