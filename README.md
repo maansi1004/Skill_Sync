@@ -3,7 +3,7 @@
 **SkillSync** is a full-stack database management system (DBMS) project designed to help university students discover technical events (like hackathons), identify skill gaps, and dynamically form balanced teams based on specific event requirements. 
 
 ---
-
+VIDEO DEMO OF THE PROJECT:
 
 https://github.com/user-attachments/assets/c2a57b00-5fac-48d5-961b-c596db5b06b4
 
