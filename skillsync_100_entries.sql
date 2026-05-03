@@ -90,6 +90,18 @@ CREATE TABLE `team_requests` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- --------------------------------------------------------- --
+-- 5. AUDIT LOGGING TABLES                                   --
+-- --------------------------------------------------------- --
+
+CREATE TABLE `audit_logs` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `student_id` INTEGER NOT NULL,
+    `action` VARCHAR(255) NOT NULL,
+    `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 -- ============================================================================ --
 -- 6. SAMPLE DATA SEEDING (100 ENTRIES PER TABLE)                              --
 -- ============================================================================ --
@@ -899,6 +911,22 @@ BEGIN
         VALUES (NEW.team_id, NEW.student_id);
         
     END IF;
+END //
+
+DELIMITER ;
+
+-- ----------------------------------------------------------------------------
+-- FEATURE 5: AUDIT LOG TRIGGER
+-- MySQL Equivalent: Database Trigger AFTER DELETE
+-- ----------------------------------------------------------------------------
+DELIMITER //
+
+CREATE TRIGGER log_member_exit
+AFTER DELETE ON team_members
+FOR EACH ROW
+BEGIN
+    INSERT INTO audit_logs (student_id, action) 
+    VALUES (OLD.student_id, CONCAT('Left Team ID: ', OLD.team_id));
 END //
 
 DELIMITER ;
