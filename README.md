@@ -4,6 +4,14 @@
 
 ---
 
+
+https://github.com/user-attachments/assets/c2a57b00-5fac-48d5-961b-c596db5b06b4
+
+<img width="1024" height="1536" alt="ER_Diagram" src="https://github.com/user-attachments/assets/cef0c3ca-2584-431c-8097-dc8e3abd8ac4" />
+
+
+
+
 ## 🌟 Key Features
 
 1. **Intelligent Event Discovery:** 
